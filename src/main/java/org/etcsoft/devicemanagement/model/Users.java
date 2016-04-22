@@ -15,7 +15,7 @@ import java.util.Map;
 @Value //immutable
 @Builder // builder
 @ToString //override toString method
-public class Users {
+public final class Users {
 
     public static final String USER = "user";
     public static final String PASSWORD = "password";

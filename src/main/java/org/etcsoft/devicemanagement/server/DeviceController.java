@@ -9,11 +9,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 /**
  * Created by mauro on 27/03/16.
  */
-//restcontroller
 @RestController
-//mapping path
 @RequestMapping(value = "devices")
-public class DeviceController {
+public final class DeviceController {
 
     private final DeviceService deviceService;
 

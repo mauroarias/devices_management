@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(value = "org.etcsoft")
-public class DeviceApp {
+public final class DeviceApp {
 
     public static void main(String[] args) {
         SpringApplication.run(DeviceApp.class, args);

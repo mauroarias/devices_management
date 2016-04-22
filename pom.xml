@@ -20,8 +20,12 @@
       <!--Spring-->
       <spring.boot.version>1.2.7.RELEASE</spring.boot.version>
       <spring.web.version>4.2.5.RELEASE</spring.web.version>
+      <!--Validations-->
       <javax.validation.version>1.1.0.Final</javax.validation.version>
+      <!--Log-->
       <log4j.version>1.2.17</log4j.version>
+      <!--mysql-->
+      <mysql.connector.version>5.1.38</mysql.connector.version>
    </properties>
 
    <!--Spring boot as parent
@@ -34,6 +38,7 @@
 
    <dependencyManagement>
       <dependencies>
+         <!--model-->
          <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -50,26 +55,36 @@
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
          </dependency>
+         <!--testing-->
          <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
             <version>${junit.version}</version>
          </dependency>
+         <!--log-->
          <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
          </dependency>
+         <!--spring-->
          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.web.version}</version>
          </dependency>
+         <!--validation-->
          <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>${javax.validation.version}</version>
+         </dependency>
+         <!--mysql-->
+         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
          </dependency>
       </dependencies>
    </dependencyManagement>
@@ -111,35 +126,20 @@
             </exclusion>
          </exclusions>
       </dependency>
-      <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter</artifactId>-->
-      <!--</dependency>-->
-      <!--<dependency>-->
-      <!--<groupId>org.springframework.boot</groupId>-->
-      <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-      <!--</dependency>-->
-      <!--web application with Jetty-->
+      <!--Spring boot using Jetty-->
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-jetty</artifactId>
       </dependency>
+      <!--Spring autoconfigure-->
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-autoconfigure</artifactId>
       </dependency>
-      <!--<dependency>-->
-         <!--<groupId>org.springframework</groupId>-->
-         <!--<artifactId>spring-web</artifactId>-->
-      <!--</dependency>-->
-
+      <!--model-->
       <dependency>
          <groupId>joda-time</groupId>
          <artifactId>joda-time</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
       </dependency>
       <dependency>
          <groupId>org.projectlombok</groupId>
@@ -149,12 +149,20 @@
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-databind</artifactId>
       </dependency>
-
+      <!--testing-->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+      </dependency>
+      <!--validation-->
       <dependency>
          <groupId>javax.validation</groupId>
          <artifactId>validation-api</artifactId>
       </dependency>
-
+       <!--mysql-->
+       <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+       </dependency>
    </dependencies>
-
 </project>
