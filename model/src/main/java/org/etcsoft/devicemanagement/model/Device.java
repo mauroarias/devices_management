@@ -1,8 +1,7 @@
-package org.etcsoft.device.management.model;
+package org.etcsoft.devicemanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 
 import java.util.Map;

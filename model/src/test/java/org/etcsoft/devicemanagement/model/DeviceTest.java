@@ -1,4 +1,4 @@
-package org.etcsoft.device.management.model;
+package org.etcsoft.devicemanagement.model;
 
 /**
  * Created by mauro on 16/04/16.

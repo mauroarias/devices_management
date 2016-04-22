@@ -1,6 +1,7 @@
-package org.etcsoft.device.management.service;
+package org.etcsoft.devicemanagement.services;
 
-import org.etcsoft.device.management.model.Device;
+import org.etcsoft.devicemanagement.model.Device;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -11,6 +12,8 @@ import java.util.UUID;
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
+    @Autowired
+    public DeviceServiceImpl() { }
 
     @Override
     public Device addDevice(Device device) {

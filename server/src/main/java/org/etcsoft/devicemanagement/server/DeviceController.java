@@ -1,24 +1,27 @@
-package org.etcsoft.device.management.server;
+package org.etcsoft.devicemanagement.server;
 
-import org.etcsoft.device.management.model.Device;
-import org.etcsoft.device.management.service.DeviceService;
+import org.etcsoft.devicemanagement.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 
 /**
  * Created by mauro on 27/03/16.
  */
+//restcontroller
 @RestController
+//mapping path
 @RequestMapping(value = "devices")
 public class DeviceController {
 
+    private final DeviceService deviceService;
+
     @Autowired
-    DeviceService deviceService;
+    public DeviceController(DeviceService deviceService)
+    {
+        this.deviceService = deviceService;
+    }
 
     @RequestMapping(value = "/{deviceName}", method = DELETE)
     public void deleteDevice(@PathVariable("deviceName") String deviceName) {

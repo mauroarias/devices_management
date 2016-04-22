@@ -1,6 +1,6 @@
-package org.etcsoft.device.management.service;
+package org.etcsoft.devicemanagement.services;
 
-import org.etcsoft.device.management.model.Device;
+import org.etcsoft.devicemanagement.model.Device;
 
 import java.util.UUID;
 

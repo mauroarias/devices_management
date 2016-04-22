@@ -11,13 +11,20 @@
 
    <properties>
       <java.version>1.8</java.version>
+      <!--model-->
       <lombok.version>1.16.8</lombok.version>
       <joda.time.version>2.5</joda.time.version>
       <jackson.datatype.version>2.5.4</jackson.datatype.version>
+      <!--testing-->
       <junit.version>4.9</junit.version>
-      <junit.params.version>1.0.3</junit.params.version>
+      <!--Spring-->
+      <spring.boot.version>1.2.7.RELEASE</spring.boot.version>
+      <spring.web.version>4.2.5.RELEASE</spring.web.version>
+      <javax.validation.version>1.1.0.Final</javax.validation.version>
+      <log4j.version>1.2.17</log4j.version>
    </properties>
 
+   <!--Spring boot as parent-->
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
@@ -26,11 +33,9 @@
 
    <modules>
       <module>app</module>
-      <!--<module>access</module>-->
       <module>server</module>
       <module>model</module>
       <module>services</module>
-      <!--<module>repository</module>-->
    </modules>
 
    <dependencyManagement>
@@ -40,82 +45,60 @@
             <artifactId>device-app</artifactId>
             <version>${project.version}</version>
          </dependency>
-
          <dependency>
             <groupId>org.etcsoft</groupId>
             <artifactId>device-model</artifactId>
             <version>${project.version}</version>
          </dependency>
-
          <dependency>
             <groupId>org.etcsoft</groupId>
             <artifactId>device-server</artifactId>
             <version>${project.version}</version>
          </dependency>
-
          <dependency>
             <groupId>org.etcsoft</groupId>
             <artifactId>device-services</artifactId>
             <version>${project.version}</version>
          </dependency>
-
          <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
          </dependency>
-
          <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.datatype.version}</version>
          </dependency>
-
-         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-joda</artifactId>
-            <version>${jackson.datatype.version}</version>
-         </dependency>
-
-         <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-            <version>${jackson.datatype.version}</version>
-         </dependency>
-
          <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
          </dependency>
-
-         <dependency>
-            <groupId>org.etcsoft</groupId>
-            <artifactId>device-core</artifactId>
-            <version>${project.version}</version>
-         </dependency>
-
          <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
             <version>${junit.version}</version>
          </dependency>
+         <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.web.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${javax.validation.version}</version>
+         </dependency>
       </dependencies>
    </dependencyManagement>
-
-   <dependencies>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
-      </dependency>
-
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-      </dependency>
-   </dependencies>
 
    <repositories>
       <repository>
