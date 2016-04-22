@@ -12,7 +12,6 @@ import java.util.UUID;
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
-    @Autowired
     public DeviceServiceImpl() { }
 
     @Override

@@ -1,4 +1,4 @@
-package org.etcsoft.devicemanagement.services;
+package org.etcsoft.devicemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
