@@ -29,7 +29,6 @@ public class DeviceTest {
         DateTime datetime = DateTime.now().withZone(UTC);
         String partnumber = "usijc21.3";
         Device device = Device.builder()
-                .deviceId(uuid)
                 .fwVersion(fwVersion)
                 .manufacture(manufacture)
                 .deviceName(deviceName)
@@ -39,7 +38,6 @@ public class DeviceTest {
                 .property("design", "x-model")
                 .build();
 
-        assertEquals(uuid, device.getDeviceId());
         assertEquals(deviceName, device.getDeviceName());
         assertEquals(fwVersion, device.getFwVersion());
         assertEquals(manufacture, device.getManufacture());

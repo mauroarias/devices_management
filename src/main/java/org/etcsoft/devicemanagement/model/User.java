@@ -1,11 +1,14 @@
 package org.etcsoft.devicemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Singular;
 import lombok.ToString;
 import lombok.Value;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,21 +18,35 @@ import java.util.Map;
 @Value //immutable
 @Builder // builder
 @ToString //override toString method
-public final class Users {
+public final class User {
 
     public static final String USER = "user";
     public static final String PASSWORD = "password";
-    public static final String DEVICES = "devices";
+    public static final String DEVICES = "deviceNames";
     public static final String PROPERTIES = "properties";
 
     @JsonProperty(value = USER)
-    String user;
+    private final String user;
+
     @JsonProperty(value = PASSWORD)
-    String passwd;
+    private final String passwd;
+
     @JsonProperty(value = DEVICES)
     @Singular
-    List<Device> devices;
+    private final List<String> deviceNames;
+
     @JsonProperty(value = PROPERTIES)
     @Singular
-    Map<String,Object> properties;
+    private final Map<String,Object> properties;
+
+    @JsonIgnore
+    public List<String> getDeviceNames() {
+        return new ArrayList<>(deviceNames);
+    }
+
+    @JsonIgnore
+    public Map<String,Object> getProperties() {
+        return new HashMap<>(properties);
+    }
 }
+

@@ -1,168 +1,184 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-   <packaging>pom</packaging>
-   <groupId>org.etcsoft</groupId>
-   <artifactId>device-management</artifactId>
-   <version>1.0-SNAPSHOT</version>
-   <name>device management</name>
-   <description>device management microservices</description>
+    <packaging>pom</packaging>
+    <groupId>org.etcsoft</groupId>
+    <artifactId>device-management</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>device management</name>
+    <description>device management microservices</description>
 
-   <properties>
-      <java.version>1.8</java.version>
-      <!--model-->
-      <lombok.version>1.16.8</lombok.version>
-      <joda.time.version>2.5</joda.time.version>
-      <jackson.datatype.version>2.5.4</jackson.datatype.version>
-      <!--testing-->
-      <junit.version>4.9</junit.version>
-      <!--Spring-->
-      <spring.boot.version>1.2.7.RELEASE</spring.boot.version>
-      <spring.web.version>4.2.5.RELEASE</spring.web.version>
-      <!--Validations-->
-      <javax.validation.version>1.1.0.Final</javax.validation.version>
-      <!--Log-->
-      <log4j.version>1.2.17</log4j.version>
-      <!--mysql-->
-      <mysql.connector.version>5.1.38</mysql.connector.version>
-   </properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <!--model-->
+        <lombok.version>1.16.8</lombok.version>
+        <joda.time.version>2.5</joda.time.version>
+        <jackson.datatype.version>2.5.4</jackson.datatype.version>
+        <!--testing-->
+        <junit.version>4.9</junit.version>
+        <!--Spring-->
+        <spring.boot.version>1.2.7.RELEASE</spring.boot.version>
+        <spring.web.version>4.2.5.RELEASE</spring.web.version>
+        <!--Validations-->
+        <javax.validation.version>1.1.0.Final</javax.validation.version>
+        <commons.lang3.version>3.0</commons.lang3.version>
+        <!--Log-->
+        <log4j.version>1.2.17</log4j.version>
+        <!--mysql-->
+        <mysql.connector.version>5.1.38</mysql.connector.version>
+    </properties>
 
-   <!--Spring boot as parent
-   Inheriting the starter parent-->
-   <parent>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-parent</artifactId>
-      <version>1.3.3.RELEASE</version>
-   </parent>
+    <!--Spring boot as parent
+    Inheriting the starter parent-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.3.RELEASE</version>
+    </parent>
 
-   <dependencyManagement>
-      <dependencies>
-         <!--model-->
-         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-         </dependency>
-         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.datatype.version}</version>
-         </dependency>
-         <dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!--model-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.datatype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.time.version}</version>
+            </dependency>
+            <!--testing-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <scope>test</scope>
+                <version>${junit.version}</version>
+            </dependency>
+            <!--log-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <!--spring-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.web.version}</version>
+            </dependency>
+            <!--validation-->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+            <!--mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/libs-release</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!--Create a jar executable, using maven plugin-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!--web application-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!--No tomcat web application-->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--using Jetty-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <!--Spring autoconfigure-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <!--model-->
+        <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>${joda.time.version}</version>
-         </dependency>
-         <!--testing-->
-         <dependency>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!--testing-->
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
-            <version>${junit.version}</version>
-         </dependency>
-         <!--log-->
-         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-         </dependency>
-         <!--spring-->
-         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.web.version}</version>
-         </dependency>
-         <!--validation-->
-         <dependency>
+        </dependency>
+        <!--validation-->
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>${javax.validation.version}</version>
-         </dependency>
-         <!--mysql-->
-         <dependency>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <!--mysql-->
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.version}</version>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-
-   <repositories>
-      <repository>
-         <id>spring-releases</id>
-         <url>https://repo.spring.io/libs-release</url>
-      </repository>
-   </repositories>
-
-   <pluginRepositories>
-      <pluginRepository>
-         <id>spring-releases</id>
-         <url>https://repo.spring.io/libs-release</url>
-      </pluginRepository>
-   </pluginRepositories>
-
-   <!--Create a jar executable, using maven plugin-->
-   <build>
-      <plugins>
-         <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-         </plugin>
-      </plugins>
-   </build>
-
-   <dependencies>
-      <!--web application-->
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
-         <exclusions>
-            <!--No tomcat web application-->
-            <exclusion>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-tomcat</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <!--Spring boot using Jetty-->
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-jetty</artifactId>
-      </dependency>
-      <!--Spring autoconfigure-->
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-autoconfigure</artifactId>
-      </dependency>
-      <!--model-->
-      <dependency>
-         <groupId>joda-time</groupId>
-         <artifactId>joda-time</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-      </dependency>
-      <!--testing-->
-      <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-      </dependency>
-      <!--validation-->
-      <dependency>
-         <groupId>javax.validation</groupId>
-         <artifactId>validation-api</artifactId>
-      </dependency>
-       <!--mysql-->
-       <dependency>
-           <groupId>mysql</groupId>
-           <artifactId>mysql-connector-java</artifactId>
-       </dependency>
-   </dependencies>
+        </dependency>
+        <!--log-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+    </dependencies>
 </project>
+

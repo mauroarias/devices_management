@@ -1,11 +1,15 @@
 package org.etcsoft.devicemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import lombok.Builder;
+import lombok.Singular;
+import lombok.ToString;
+import lombok.Value;
 import org.joda.time.DateTime;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by mauro on 27/03/16.
@@ -15,7 +19,6 @@ import java.util.UUID;
 @ToString //override toString method
 public final class Device {
     public static final String DEVICE_NAME = "device_name";
-    public static final String DEVICE_ID = "device_id";
     public static final String MANUFACTURE = "manufacture";
     public static final String PART_NUMBER = "part_number";
     public static final String FW_VERSION = "firmware_version";
@@ -24,20 +27,29 @@ public final class Device {
     public static final String PROPERTIES = "properties";
 
     @JsonProperty(value = DEVICE_NAME)
-    String deviceName;
-    @JsonProperty(value = DEVICE_ID)
-    UUID deviceId;
+    private final String deviceName;
+
     @JsonProperty(value = MANUFACTURE)
-    String manufacture;
+    private final String manufacture;
+
     @JsonProperty(value = PART_NUMBER)
-    String partNumber;
+    private final String partNumber;
+
     @JsonProperty(value = FW_VERSION)
-    String fwVersion;
+    private final String fwVersion;
+
     @JsonProperty(value = LAST_UPDATE)
-    DateTime lasUpdate;
+    private final DateTime lasUpdate;
+
     @JsonProperty(value = STATUS)
-    boolean enabled;
+    private final Boolean enabled;
+
     @JsonProperty(value = PROPERTIES)
     @Singular
-    Map<String,Object> properties;
+    private final Map<String,Object> properties;
+
+    @JsonIgnore
+    public Map<String,Object> getProperties() {
+        return new HashMap<>(properties);
+    }
 }
