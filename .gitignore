@@ -1,0 +1,8 @@
+.idea/
+target/
+*.DS_Store
+*.iml
+pom.xml.versionsBackup
+.classpath
+.settings/
+.project

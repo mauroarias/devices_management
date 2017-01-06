@@ -1,0 +1,49 @@
+create database device_management;
+
+use device_management;
+
+CREATE TABLE user
+(
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) DEFAULT NULL,
+    first_name VARCHAR(50) DEFAULT NULL,
+    last_name VARCHAR(50) DEFAULT NULL,
+    PRIMARY KEY ( username )
+);
+
+CREATE TABLE device
+(
+    device_id VARCHAR(40) NOT NULL,
+    fw_version VARCHAR(50) NOT NULL,
+    last_update DATETIME DEFAULT NULL,
+    manufacture VARCHAR(50) DEFAULT NULL,
+    part_number VARCHAR(50) NOT NULL,
+    PRIMARY KEY ( device_id )
+);
+
+CREATE TABLE properties
+(
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    device_id VARCHAR(40) NOT NULL,
+    property_name VARCHAR(50) NOT NULL,
+    value BLOB DEFAULT NULL,
+    PRIMARY KEY ( id ),
+    FOREIGN KEY (device_id) REFERENCES device (device_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE owner_device_relationship
+(
+    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+    device_id VARCHAR(40) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    PRIMARY KEY ( id ),
+    FOREIGN KEY (device_id) REFERENCES device (device_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    FOREIGN KEY (username) REFERENCES user (username)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);

@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <packaging>jar</packaging>
+   <groupId>org.etcsoft</groupId>
+   <artifactId>devicemanagement</artifactId>
+   <version>1.1-SNAPSHOT</version>
+   <name>device management</name>
+   <description>device management microservices</description>
+
+   <!--Spring boot as parent
+   Inheriting the starter parent-->
+   <parent>
+      <groupId>org.etcsoft</groupId>
+      <artifactId>common-build-plugins</artifactId>
+      <version>1.1.0</version>
+   </parent>
+
+   <properties>
+      <boot.oauth2.resource.version>1.1-SNAPSHOT</boot.oauth2.resource.version>
+      <common.docker.test.version>1.1-SNAPSHOT</common.docker.test.version>
+   </properties>
+
+   <dependencies>
+      <!--oauth2 resource-->
+      <dependency>
+         <groupId>org.etcsoft</groupId>
+         <artifactId>boot-app-oauth2-resource</artifactId>
+         <version>${boot.oauth2.resource.version}</version>
+      </dependency>
+      <!--docker integration test-->
+      <dependency>
+         <groupId>org.etcsoft</groupId>
+         <artifactId>common-docker-test</artifactId>
+         <version>${common.docker.test.version}</version>
+      </dependency>
+      <!--model-->
+      <dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+      </dependency>
+      <!--testing-->
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-all</artifactId>
+      </dependency>
+      <!--validation-->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+      </dependency>
+      <!--mysql-->
+       <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+       </dependency>
+      <!--hikari-->
+       <dependency>
+           <groupId>com.zaxxer</groupId>
+           <artifactId>HikariCP</artifactId>
+       </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <!--Create a jar executable, using maven plugin-->
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+      </plugins>
+   </build>
+</project>
