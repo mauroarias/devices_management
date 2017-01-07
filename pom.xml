@@ -5,7 +5,7 @@
    <packaging>jar</packaging>
    <groupId>org.etcsoft</groupId>
    <artifactId>devicemanagement</artifactId>
-   <version>1.1-SNAPSHOT</version>
+   <version>1.1.0-SNAPSHOT</version>
    <name>device management</name>
    <description>device management microservices</description>
 
@@ -18,8 +18,8 @@
    </parent>
 
    <properties>
-      <boot.oauth2.resource.version>1.1-SNAPSHOT</boot.oauth2.resource.version>
-      <common.docker.test.version>1.1-SNAPSHOT</common.docker.test.version>
+      <boot.oauth2.resource.version>1.1.0-SNAPSHOT</boot.oauth2.resource.version>
+      <common.docker.test.version>1.1.0-SNAPSHOT</common.docker.test.version>
    </properties>
 
    <dependencies>
