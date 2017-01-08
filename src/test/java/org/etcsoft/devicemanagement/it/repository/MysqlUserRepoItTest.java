@@ -22,7 +22,7 @@ import static java.lang.String.format;
 import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 import static org.junit.Assert.fail;
 
-public final class MysqlUserRepoTestIt extends MysqlAbstractRepo {
+public final class MysqlUserRepoItTest extends MysqlAbstractRepo {
 
     @Test
     public void WhenInsertUser_ThenOk() {

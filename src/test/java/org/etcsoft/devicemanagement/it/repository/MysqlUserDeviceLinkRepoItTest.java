@@ -13,7 +13,7 @@ import java.util.UUID;
 import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 import static org.junit.Assert.fail;
 
-public final class MysqlUserDeviceLinkRepoTestIt extends MysqlAbstractRepo {
+public final class MysqlUserDeviceLinkRepoItTest extends MysqlAbstractRepo {
 
     @Test
     public void whenUserDeviceLink_ThenOk() {

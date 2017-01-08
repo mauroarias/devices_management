@@ -14,9 +14,9 @@ import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MysqlDeviceRepoTestIt.class,
-        MysqlUserRepoTestIt.class,
-        MysqlUserDeviceLinkRepoTestIt.class})
+        MysqlDeviceRepoItTest.class,
+        MysqlUserRepoItTest.class,
+        MysqlUserDeviceLinkRepoItTest.class})
 public final class MysqlTestSuiteIt {
     private static MysqlDockerIt mysqlUtils = DockerItFactory.getDefaultMysqlInstance();
     public MysqlTestSuiteIt() {}

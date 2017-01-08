@@ -19,7 +19,7 @@ import static java.lang.String.format;
 import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 import static org.junit.Assert.fail;
 
-public final class MysqlDeviceRepoTestIt extends MysqlAbstractRepo {
+public final class MysqlDeviceRepoItTest extends MysqlAbstractRepo {
 
     @Test
     public void WhenInsertDevice_ThenOk() {
