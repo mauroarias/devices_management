@@ -5,8 +5,7 @@ import lombok.SneakyThrows;
 import org.etcsoft.devicemanagement.model.Device;
 import org.etcsoft.devicemanagement.model.User;
 import org.etcsoft.devicemanagement.repository.*;
-import org.etcsoft.dockertest.docker.DockerItFactory;
-import org.etcsoft.dockertest.docker.MysqlDockerIt;
+import org.etcsoft.dockertest.docker.MysqlDocker;
 import org.joda.time.DateTime;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -23,13 +22,13 @@ import static org.junit.Assert.fail;
 
 public abstract class MysqlAbstractRepo {
     protected final HikariDataSource dataSource;
-    protected final static MysqlDockerIt mysqlUtils = DockerItFactory.getDefaultMysqlInstance();
+    static MysqlDocker mysqlUtils = MysqlTestSuiteIt.mysqlUtils;
     protected final DeviceRepo deviceRepo;
     protected final UserDeviceLinkRepo userDeviceLinkRepo;
     protected final UserRepo userRepo;
 
     @Rule
-        public final ExpectedException thrownExpected = ExpectedException.none();
+    public final ExpectedException thrownExpected = ExpectedException.none();
 
     public MysqlAbstractRepo() {
         this.dataSource = mysqlUtils.getDatasource();
@@ -59,8 +58,6 @@ public abstract class MysqlAbstractRepo {
     public void saveUser(User user) {
         try (Connection connection =
                      dataSource.getConnection()) {
-            connection.setAutoCommit(true);
-
             final PreparedStatement insertUser = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".user " +
                             "(username, email, password, first_name, last_name) " +
@@ -71,6 +68,7 @@ public abstract class MysqlAbstractRepo {
             insertUser.setString(4, user.getFirstName());
             insertUser.setString(5, user.getLastName());
             insertUser.execute();
+            connection.commit();
 
             final PreparedStatement insertOwnerLinks = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".owner_device_relationship (device_id, username) VALUES (?, ?)");
@@ -80,6 +78,7 @@ public abstract class MysqlAbstractRepo {
                 insertOwnerLinks.addBatch();
             }
             insertOwnerLinks.executeBatch();
+            connection.commit();
         } catch (Exception ex) {
             fail();
         }
@@ -116,8 +115,6 @@ public abstract class MysqlAbstractRepo {
         Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection =
                      dataSource.getConnection()) {
-            connection.setAutoCommit(true);
-
             final PreparedStatement insertDevice = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".device " +
                             "(device_id, fw_version, last_update, manufacture, part_number) " +
@@ -128,6 +125,7 @@ public abstract class MysqlAbstractRepo {
             insertDevice.setString(4, device.getManufacture());
             insertDevice.setString(5, device.getPartNumber());
             insertDevice.execute();
+            connection.commit();
 
             final PreparedStatement insertProperties = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".properties (device_id, property_name, value) VALUES (?, ?, ?)");
@@ -138,6 +136,7 @@ public abstract class MysqlAbstractRepo {
                 insertProperties.addBatch();
             }
             insertProperties.executeBatch();
+            connection.commit();
 
             final PreparedStatement insertOwnerLinks = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".owner_device_relationship (device_id, username) VALUES (?, ?)");
@@ -147,6 +146,7 @@ public abstract class MysqlAbstractRepo {
                 insertOwnerLinks.addBatch();
             }
             insertOwnerLinks.executeBatch();
+            connection.commit();
         } catch (Exception ex) {
             fail();
         }
@@ -157,13 +157,12 @@ public abstract class MysqlAbstractRepo {
         Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection =
                      dataSource.getConnection()) {
-            connection.setAutoCommit(true);
-
             final PreparedStatement insertOwnerLinks = connection.prepareStatement(
                     "INSERT INTO " + NAMESPACE + ".owner_device_relationship (device_id, username) VALUES (?, ?)");
             insertOwnerLinks.setString(1, deviceId.toString());
             insertOwnerLinks.setString(2, username);
             insertOwnerLinks.execute();
+            connection.commit();
         } catch (Exception ex) {
             fail();
         }

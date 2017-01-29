@@ -16,7 +16,7 @@ import static org.etcsoft.devicemanagement.model.Enums.ErrorCodes.DATABASE_ACCES
 import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 
 @Component
-public final class MysqlUserDeviceLinkRepo implements UserDeviceLinkRepo {
+public final class MysqlUserDeviceLinkRepo extends MysqlRepo implements UserDeviceLinkRepo {
     private final static Logger logger = Logger.getLogger(MysqlDeviceRepo.class);
 
     private final HikariDataSource dataSource;
@@ -44,7 +44,7 @@ public final class MysqlUserDeviceLinkRepo implements UserDeviceLinkRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during insert device ids into an username, rollback will be performed");
-                MysqlUtils.rollbackTransaction("insert", connection);
+                rollbackTransaction("insert", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during insert device ids into an username, error %s", ex.getMessage()));
             }
@@ -69,7 +69,7 @@ public final class MysqlUserDeviceLinkRepo implements UserDeviceLinkRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during delete device ids into an username, rollback will be performed");
-                MysqlUtils.rollbackTransaction("delete", connection);
+                rollbackTransaction("delete", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during delete device ids into an username, error %s", ex.getMessage()));
             }

@@ -1,8 +1,8 @@
 package org.etcsoft.devicemanagement.it.repository;
 
 import lombok.SneakyThrows;
-import org.etcsoft.dockertest.docker.DockerItFactory;
-import org.etcsoft.dockertest.docker.MysqlDockerIt;
+import org.etcsoft.dockertest.docker.DockerContainerFactory;
+import org.etcsoft.dockertest.docker.MysqlDocker;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
         MysqlUserRepoItTest.class,
         MysqlUserDeviceLinkRepoItTest.class})
 public final class MysqlTestSuiteIt {
-    private static MysqlDockerIt mysqlUtils = DockerItFactory.getDefaultMysqlInstance();
+    public static MysqlDocker mysqlUtils = DockerContainerFactory.getMysqlBuilder().build();
     public MysqlTestSuiteIt() {}
 
     @BeforeClass
@@ -61,6 +61,7 @@ public final class MysqlTestSuiteIt {
                         " ON DELETE CASCADE " +
                         " ON UPDATE CASCADE )"
         ));
+        MysqlAbstractRepo.mysqlUtils = mysqlUtils;
     }
 
     @AfterClass

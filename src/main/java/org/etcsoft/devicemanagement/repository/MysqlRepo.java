@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import static java.lang.String.format;
 import static org.etcsoft.devicemanagement.model.Enums.ErrorCodes.DATABASE_ACCESS;
 
-final class MysqlUtils {
+class MysqlRepo {
 
-    static void rollbackTransaction(String transactionType, Connection connection) {
+    void rollbackTransaction(String transactionType, Connection connection) {
         try {
             connection.rollback();
 

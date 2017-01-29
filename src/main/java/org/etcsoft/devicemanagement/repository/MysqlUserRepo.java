@@ -24,7 +24,7 @@ import static org.etcsoft.devicemanagement.model.Enums.ErrorCodes.DATABASE_ACCES
 import static org.etcsoft.devicemanagement.repository.Constants.NAMESPACE;
 
 @Component
-public final class MysqlUserRepo implements UserRepo {
+public final class MysqlUserRepo extends MysqlRepo implements UserRepo {
     private final static Logger logger = Logger.getLogger(MysqlUserRepo.class);
 
     private final HikariDataSource dataSource;
@@ -65,7 +65,7 @@ public final class MysqlUserRepo implements UserRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during insert, rollback will be performed");
-                MysqlUtils.rollbackTransaction("insert", connection);
+                rollbackTransaction("insert", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during insert, error %s", ex.getMessage()));
             }
@@ -101,7 +101,7 @@ public final class MysqlUserRepo implements UserRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during update, rollback will be performed");
-                MysqlUtils.rollbackTransaction("update", connection);
+                rollbackTransaction("update", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during update, error %s", ex.getMessage()));
             }
@@ -125,7 +125,7 @@ public final class MysqlUserRepo implements UserRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during delete, rollback will be performed");
-                MysqlUtils.rollbackTransaction("delete", connection);
+                rollbackTransaction("delete", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during delete, error %s", ex.getMessage()));
             }
@@ -203,7 +203,7 @@ public final class MysqlUserRepo implements UserRepo {
             } catch (Exception ex) {
 
                 logger.debug("something was wrong during update, rollback will be performed");
-                MysqlUtils.rollbackTransaction("update", connection);
+                rollbackTransaction("update", connection);
                 throw new IllegalException(DATABASE_ACCESS, format(
                         "Something was wrong during update, error %s", ex.getMessage()));
             }
